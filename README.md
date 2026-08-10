@@ -12,3 +12,8 @@ Made by DS (and jipiti)
 - Automation
 - Package Manager
 - Persona UI
+
+Run With :
+cd ~/Projects/PersonaOS
+source .venv/bin/activate
+python -m personaos.main

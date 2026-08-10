@@ -1,0 +1,36 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "personaos"
+version = "0.1.0"
+description = "Persona 3 Reload inspired Linux productivity dashboard"
+readme = "README.md"
+requires-python = ">=3.12"
+
+dependencies = [
+    "PySide6>=6.8",
+    "psutil",
+    "requests",
+    "docker",
+    "fastapi",
+    "uvicorn",
+    "Pillow",
+    "pyqtgraph",
+    "watchdog",
+    "rich",
+    "GitPython"
+]
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.black]
+line-length = 88
+
+[tool.isort]
+profile = "black"
