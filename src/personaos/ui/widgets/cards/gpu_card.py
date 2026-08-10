@@ -1,14 +1,16 @@
-from pathlib import Path
+from personaos.services.monitors.system_monitor import SystemMonitor
+from personaos.ui.widgets.cards.base_card import BaseCard
 
 
-@staticmethod
-def gpu_percent():
-    path = Path("/sys/class/drm/card1/device/gpu_busy_percent")
+class GpuCard(BaseCard):
 
-    if path.exists():
-        try:
-            return int(path.read_text().strip())
-        except Exception:
-            pass
+    def __init__(self):
+        super().__init__("GPU")
 
-    return None
+    def update_value(self):
+        gpu = SystemMonitor.gpu_percent()
+
+        if gpu is None:
+            self.setValue("N/A")
+        else:
+            self.setValue(f"{gpu}%")

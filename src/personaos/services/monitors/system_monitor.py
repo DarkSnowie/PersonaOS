@@ -1,7 +1,7 @@
 import platform
 import time
 import psutil
-
+from pathlib import Path
 
 class SystemMonitor:
 
@@ -72,3 +72,15 @@ class SystemMonitor:
     @staticmethod
     def os_name():
         return platform.system()
+
+    @staticmethod
+    def gpu_percent():
+        path = Path("/sys/class/drm/card1/device/gpu_busy_percent")
+
+        if path.exists():
+            try:
+                return int(path.read_text().strip())
+            except Exception:
+                return None
+
+        return None
