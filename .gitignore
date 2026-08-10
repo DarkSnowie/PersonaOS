@@ -1,0 +1,34 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+
+# Virtual Environment
+.venv/
+
+# VS Code
+.vscode/
+
+# Qt
+*.qrc
+*.qmlc
+
+# Linux
+*.swp
+*~
+
+# Logs
+*.log
+
+# Cache
+.cache/
+
+# Build
+build/
+dist/
+
+# Testing
+.pytest_cache/
+
+# Local configs
+config.local.json

@@ -1,0 +1,11 @@
+PySide6
+psutil
+requests
+docker
+fastapi
+uvicorn
+Pillow
+pyqtgraph
+watchdog
+rich
+GitPython
