@@ -78,7 +78,7 @@ class SystemMonitor:
         path = Path("/sys/class/drm/card1/device/gpu_busy_percent")
 
         if path.exists():
-            try:
+            try:3
                 return int(path.read_text().strip())
             except Exception:
                 return None
