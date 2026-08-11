@@ -15,7 +15,7 @@ class CpuCard(BaseCard):
 
         self.setSubtitle(
             f"{SystemMonitor.cpu_name()}\n"
-            f"{SystemMonitor.cpu_freq()/1000:.2f} GHz"
+            f"{SystemMonitor.cpu_freq():.2f} GHz"
         )
 
         self.animateNumber(int(cpu))

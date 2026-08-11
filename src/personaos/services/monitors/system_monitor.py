@@ -43,9 +43,9 @@ class SystemMonitor:
         freq = psutil.cpu_freq()
 
         if freq:
-            return freq.current / 1000
+            return freq.current / 1000.0   # MHz -> GHz
 
-        return 0
+        return 0.0
 
     @staticmethod
     def cpu_threads():
