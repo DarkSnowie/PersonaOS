@@ -1,7 +1,12 @@
 import platform
+import socket
+import subprocess
 import time
-import psutil
 from pathlib import Path
+
+import distro
+import psutil
+
 
 class SystemMonitor:
 
@@ -36,7 +41,11 @@ class SystemMonitor:
     @staticmethod
     def cpu_freq():
         freq = psutil.cpu_freq()
-        return freq.current if freq else 0
+
+        if freq:
+            return freq.current / 1000
+
+        return 0
 
     @staticmethod
     def cpu_threads():
@@ -54,14 +63,16 @@ class SystemMonitor:
     @staticmethod
     def battery():
         return psutil.sensors_battery()
-
     @staticmethod
     def uptime():
-
         seconds = int(time.time() - psutil.boot_time())
 
-        hours = seconds // 3600
+        days = seconds // 86400
+        hours = (seconds % 86400) // 3600
         minutes = (seconds % 3600) // 60
+
+        if days:
+            return f"{days}d {hours}h"
 
         return f"{hours}h {minutes}m"
 
@@ -71,16 +82,95 @@ class SystemMonitor:
 
     @staticmethod
     def os_name():
-        return platform.system()
+        return distro.name(pretty=True)
 
     @staticmethod
     def gpu_percent():
         path = Path("/sys/class/drm/card1/device/gpu_busy_percent")
 
         if path.exists():
-            try:3
+            try:
                 return int(path.read_text().strip())
             except Exception:
                 return None
+
+        return None
+
+    @staticmethod
+    def cpu_temperature():
+        temps = psutil.sensors_temperatures()
+
+        if "k10temp" in temps:
+            return temps["k10temp"][0].current
+
+        return None
+
+    @staticmethod
+    def gpu_temperature():
+        try:
+            for hwmon in Path("/sys/class/hwmon").glob("hwmon*"):
+
+                name = (hwmon / "name").read_text().strip()
+
+                if name == "amdgpu":
+
+                    temp = (
+                        hwmon / "temp1_input"
+                    ).read_text().strip()
+
+                    return int(temp) / 1000
+
+        except Exception:
+            pass
+
+        return None
+
+    @staticmethod
+    def hostname():
+        return socket.gethostname()
+
+    @staticmethod
+    def ram_available():
+        return psutil.virtual_memory().available / (1024**3)
+
+    @staticmethod
+    def disk_free():
+        return psutil.disk_usage("/").free / (1024**3)
+
+    @staticmethod
+    def cpu_logical():
+        return psutil.cpu_count()
+
+    @staticmethod
+    def cpu_physical():
+        return psutil.cpu_count(logical=False)
+
+
+    @staticmethod
+    def disk_total():
+        return psutil.disk_usage("/").total / (1024**3)
+
+
+    @staticmethod
+    def gpu_name():
+        return "AMD Radeon Vega 3"
+
+
+    @staticmethod
+    def cpu_temp():
+        temps = psutil.sensors_temperatures()
+
+        if "k10temp" in temps:
+            return temps["k10temp"][0].current
+
+        return None
+
+
+    @staticmethod
+    def gpu_temp():
+        temps = psutil.sensors_temperatures()
+
+        if "amdgpu" in temps:
+            return temps["amdgpu"][0].current
 
         return None

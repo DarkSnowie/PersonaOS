@@ -11,4 +11,11 @@ class CpuCard(BaseCard):
         cpu = SystemMonitor.cpu_percent()
 
         self.setValue(f"{cpu:.0f}%")
-        self.setSubtitle(SystemMonitor.cpu_name())
+        self.setProgress(cpu)
+
+        self.setSubtitle(
+            f"{SystemMonitor.cpu_name()}\n"
+            f"{SystemMonitor.cpu_freq()/1000:.2f} GHz"
+        )
+
+        self.animateNumber(int(cpu))

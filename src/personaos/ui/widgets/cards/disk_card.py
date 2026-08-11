@@ -8,5 +8,12 @@ class DiskCard(BaseCard):
         super().__init__("disk", "Storage")
 
     def update_value(self):
-        disk = SystemMonitor.disk_percent()
-        self.setValue(f"{disk:.0f}%")
+        percent = SystemMonitor.disk_percent()
+        used = SystemMonitor.disk_used()
+
+        self.setValue(f"{percent:.0f}%")
+        self.setProgress(percent)
+
+        self.setSubtitle(f"{used:.1f} GB Used")
+
+        self.animateNumber(int(percent))

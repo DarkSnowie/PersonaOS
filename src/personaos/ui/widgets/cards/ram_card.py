@@ -9,6 +9,12 @@ class RamCard(BaseCard):
 
     def update_value(self):
         used = SystemMonitor.ram_used()
+        total = SystemMonitor.ram_total()
         percent = SystemMonitor.ram_percent()
 
         self.setValue(f"{used:.1f} GB ({percent:.0f}%)")
+        self.setProgress(percent)
+
+        self.setSubtitle(f"{total:.1f} GB Installed")
+
+        self.animateNumber(int(percent))
