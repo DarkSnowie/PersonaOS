@@ -9,7 +9,6 @@ class IconManager:
     @classmethod
     def get(cls, name: str) -> QIcon:
         if name not in cls._cache:
-
             root = Path(__file__).resolve().parents[3]
 
             icon = root / "assets" / "icons" / f"{name}.svg"

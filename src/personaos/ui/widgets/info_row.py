@@ -3,7 +3,6 @@ from PySide6.QtWidgets import QHBoxLayout, QLabel, QWidget
 
 
 class InfoRow(QWidget):
-
     def __init__(self, name):
         super().__init__()
 

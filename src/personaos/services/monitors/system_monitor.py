@@ -1,6 +1,5 @@
 import platform
 import socket
-import subprocess
 import time
 from pathlib import Path
 
@@ -9,7 +8,6 @@ import psutil
 
 
 class SystemMonitor:
-
     @staticmethod
     def cpu_percent():
         return psutil.cpu_percent(interval=None)
@@ -20,7 +18,7 @@ class SystemMonitor:
 
     @staticmethod
     def ram_used():
-        return psutil.virtual_memory().used / (1024 ** 3)
+        return psutil.virtual_memory().used / (1024**3)
 
     @staticmethod
     def disk_percent():
@@ -43,7 +41,7 @@ class SystemMonitor:
         freq = psutil.cpu_freq()
 
         if freq:
-            return freq.current / 1000.0   # MHz -> GHz
+            return freq.current / 1000.0  # MHz -> GHz
 
         return 0.0
 
@@ -63,6 +61,7 @@ class SystemMonitor:
     @staticmethod
     def battery():
         return psutil.sensors_battery()
+
     @staticmethod
     def uptime():
         seconds = int(time.time() - psutil.boot_time())
@@ -109,14 +108,10 @@ class SystemMonitor:
     def gpu_temperature():
         try:
             for hwmon in Path("/sys/class/hwmon").glob("hwmon*"):
-
                 name = (hwmon / "name").read_text().strip()
 
                 if name == "amdgpu":
-
-                    temp = (
-                        hwmon / "temp1_input"
-                    ).read_text().strip()
+                    temp = (hwmon / "temp1_input").read_text().strip()
 
                     return int(temp) / 1000
 
@@ -145,16 +140,9 @@ class SystemMonitor:
     def cpu_physical():
         return psutil.cpu_count(logical=False)
 
-
     @staticmethod
     def disk_total():
         return psutil.disk_usage("/").total / (1024**3)
-
-
-    @staticmethod
-    def gpu_name():
-        return "AMD Radeon Vega 3"
-
 
     @staticmethod
     def cpu_temp():
@@ -165,7 +153,6 @@ class SystemMonitor:
 
         return None
 
-
     @staticmethod
     def gpu_temp():
         temps = psutil.sensors_temperatures()
@@ -174,3 +161,15 @@ class SystemMonitor:
             return temps["amdgpu"][0].current
 
         return None
+
+    @staticmethod
+    def gpu_name():
+        path = Path("/sys/class/drm/card1/device/product_name")
+
+        if path.exists():
+            try:
+                return path.read_text().strip()
+            except Exception:
+                pass
+
+        return "AMD GPU"

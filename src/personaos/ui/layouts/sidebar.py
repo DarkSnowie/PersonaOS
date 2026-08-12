@@ -5,7 +5,6 @@ from personaos.services.icon_manager import IconManager
 
 
 class Sidebar(QWidget):
-
     pageChanged = Signal(int)
 
     def __init__(self):
@@ -28,9 +27,7 @@ class Sidebar(QWidget):
         for index, (icon, name) in enumerate(pages):
             button = QPushButton(name)
             button.setMinimumHeight(54)
-            button.setIcon(
-                IconManager.get(icon)
-            )
+            button.setIcon(IconManager.get(icon))
 
             button.setIconSize(QSize(20, 20))
 

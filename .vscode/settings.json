@@ -1,0 +1,58 @@
+{
+  "python.defaultInterpreterPath": "${workspaceFolder}/.venv/bin/python",
+
+  "python.analysis.extraPaths": ["${workspaceFolder}/src"],
+
+  "python.analysis.autoImportCompletions": true,
+  "python.analysis.typeCheckingMode": "basic",
+
+  "python.testing.pytestEnabled": true,
+
+  "editor.formatOnSave": true,
+
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": "explicit",
+    "source.fixAll": "explicit"
+  },
+
+  "[python]": {
+    "editor.defaultFormatter": "charliermarsh.ruff",
+    "editor.formatOnSave": true
+  },
+
+  "files.exclude": {
+    "**/__pycache__": true,
+    "**/.pytest_cache": true,
+    "**/.ruff_cache": true
+  },
+
+  "editor.rulers": [88],
+
+  "editor.minimap.enabled": false,
+
+  "files.trimTrailingWhitespace": true,
+  "files.insertFinalNewline": true,
+
+  "git.autofetch": true,
+  "git.confirmSync": false,
+
+  "terminal.integrated.scrollback": 10000,
+
+  "cSpell.words": [
+    "fastapi",
+    "jipiti",
+    "personaos",
+    "psutil",
+    "pyqtgraph",
+    "PySide",
+    "pytest",
+    "QHBoxLayout",
+    "QMainWindow",
+    "QStackedWidget",
+    "qtawesome",
+    "QVBoxLayout",
+    "uvicorn"
+  ],
+
+  "todo-tree.ripgrep": "/usr/bin/rg"
+}

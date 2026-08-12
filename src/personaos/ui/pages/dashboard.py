@@ -13,9 +13,7 @@ from personaos.ui.widgets.cards.ram_card import RamCard
 
 
 class DashboardPage(QWidget):
-
     def __init__(self):
-
         super().__init__()
 
         root = QVBoxLayout(self)
@@ -67,4 +65,3 @@ class DashboardPage(QWidget):
         self.ram_card.update_value()
         self.disk_card.update_value()
         self.gpu_card.update_value()
-

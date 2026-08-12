@@ -1,7 +1,6 @@
 from PySide6.QtCore import (
-    QObject,
     Property,
-    QPropertyAnimation,
+    QObject,
 )
 
 

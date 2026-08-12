@@ -1,62 +1,44 @@
-#cardTitle {
-    font-size: 14px;
-    color: #7fb9ff;
-    font-weight: 600;
-}
-
 #card {
-    background-color: #182848;
-    border-radius: 18px;
-    border:1px solid rgba(255,255,255,0.06);
-    padding: 22px;
+    background:#1d2c4f;
+    border-radius:18px;
+    border:1px solid rgba(255,255,255,0.05);
 }
 
-#cardValue {
-    font-size: 30px;
-    font-weight: bold;
-    color: white;
+#card:hover{
+    background:#22345e;
+    border:1px solid #5ec8ff;
 }
 
-#card:hover {
-    background:#1f3358;
-    border:1px solid #6ec1ff;
+#cardTitle{
+    color:#7fb9ff;
+    font-size:14px;
+    font-weight:600;
 }
 
-#cardSubtitle {
-    color:rgba(255,255,255,0.55);
+#cardValue{
+    color:white;
+    font-size:30px;
+    font-weight:bold;
+}
+
+#cardSubtitle{
+    color:rgba(255,255,255,.55);
     font-size:11px;
 }
 
-#infoLabel {
-
-    color: #7db9ff;
-
-    font-size: 14px;
+QProgressBar#cardProgress{
+    border:none;
+    background:rgba(255,255,255,.08);
+    border-radius:4px;
+    min-height:8px;
+    max-height:8px;
 }
 
-#infoValue {
-
-    color: white;
-
-    font-size: 14px;
-
-    font-weight: 600;
-}
-
-QProgressBar#cardProgress {
-    border: none;
-    background: rgba(255,255,255,0.08);
-    border-radius: 5px;
-    min-height: 10px;
-    max-height: 10px;
-    text-align: center;
-}
-
-QProgressBar#cardProgress::chunk {
-    border-radius: 4px;
-    background: qlineargradient(
-        x1:0, y1:0,
-        x2:1, y2:0,
+QProgressBar#cardProgress::chunk{
+    border-radius:4px;
+    background:qlineargradient(
+        x1:0,y1:0,
+        x2:1,y2:0,
         stop:0 #4fc3f7,
         stop:1 #2979ff
     );

@@ -6,7 +6,6 @@ from personaos.ui.widgets.info_row import InfoRow
 
 
 class MonitoringPage(QWidget):
-
     def __init__(self):
         super().__init__()
 
@@ -44,12 +43,9 @@ class MonitoringPage(QWidget):
         self.timer.start(1000)
 
     def refresh(self):
-
         self.cpu.setValue(f"{SystemMonitor.cpu_percent():.0f}%")
 
-        self.freq.setValue(
-            f"{SystemMonitor.cpu_freq()/1000:.2f} GHz"
-        )
+        self.freq.setValue(f"{SystemMonitor.cpu_freq() / 1000:.2f} GHz")
 
         self.thread.setValue(SystemMonitor.cpu_threads())
 
@@ -65,9 +61,7 @@ class MonitoringPage(QWidget):
 
         if battery:
             status = "Charging" if battery.power_plugged else "Battery"
-            self.battery.setValue(
-                f"{battery.percent:.0f}% ({status})"
-            )
+            self.battery.setValue(f"{battery.percent:.0f}% ({status})")
         else:
             self.battery.setValue("Desktop")
 

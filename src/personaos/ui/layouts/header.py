@@ -2,7 +2,6 @@ from PySide6.QtWidgets import QHBoxLayout, QLabel, QPushButton, QWidget
 
 
 class Header(QWidget):
-
     def __init__(self):
         super().__init__()
 

@@ -1,0 +1,13 @@
+* text=auto eol=lf
+
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.svg text
+*.ico binary
+
+*.wav binary
+*.mp3 binary
+
+*.ttf binary
+*.otf binary

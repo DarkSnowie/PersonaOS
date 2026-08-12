@@ -2,8 +2,8 @@ import sys
 
 from PySide6.QtWidgets import QApplication
 
-from personaos.ui.windows.main_window import MainWindow
 from personaos.ui.theme import load_theme
+from personaos.ui.windows.main_window import MainWindow
 
 
 def main():

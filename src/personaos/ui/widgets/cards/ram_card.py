@@ -3,7 +3,6 @@ from personaos.ui.widgets.cards.base_card import BaseCard
 
 
 class RamCard(BaseCard):
-
     def __init__(self):
         super().__init__("ram", "Memory")
 
@@ -12,9 +11,8 @@ class RamCard(BaseCard):
         total = SystemMonitor.ram_total()
         percent = SystemMonitor.ram_percent()
 
-        self.setValue(f"{used:.1f} GB ({percent:.0f}%)")
+        self.setValue(f"{used:.1f} GB")
+
         self.setProgress(percent)
 
         self.setSubtitle(f"{total:.1f} GB Installed")
-
-        self.animateNumber(int(percent))
